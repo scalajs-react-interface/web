@@ -73,7 +73,8 @@ def runJest() = {
 }
 
 resolvers ++=Seq(Resolver.bintrayRepo("scalajs-react-interface", "maven"),
-  Resolver.bintrayRepo("scalajs-jest", "maven"))
+  Resolver.bintrayRepo("scalajs-jest", "maven"),
+  Resolver.bintrayRepo("scalajs-plus", "maven"))
 
 libraryDependencies ++= Seq(
   "org.scala-js" %%% "scalajs-dom" % "0.9.4" % Test,
