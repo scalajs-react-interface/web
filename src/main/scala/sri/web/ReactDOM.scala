@@ -13,6 +13,8 @@ object ReactDOM extends js.Object {
 
   def render(elm: ReactElement, dom: Element, callback: js.Function = ???): ReactElement = js.native
 
+  def createPortal(child: ReactNode, container: Element): ReactPortal = js.native
+
   def unmountComponentAtNode(container: js.Any): Boolean = js.native
 
   def findDOMNode(component: js.Any): dom.Node = js.native
@@ -31,6 +33,5 @@ object ReactDOMServer extends js.Object {
   def renderToString(element: ReactElement): String = js.native
 
   def renderToStaticMarkup(element: ReactElement): String = js.native
-
 
 }

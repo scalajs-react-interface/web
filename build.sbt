@@ -1,16 +1,15 @@
 name := "web"
 
-//version := "2017.7.0-SNAPSHOT"
+//version := "2017.12.0-SNAPSHOT"
 
 enablePlugins(ScalaJSPlugin)
 
-val scala211 = "2.11.11"
 
-val scala212 = "2.12.2"
+val scala212 = "2.12.4"
 
-scalaVersion := scala211
+scalaVersion := scala212
 
-crossScalaVersions := Seq(scala211,scala212)
+crossScalaVersions := Seq(scala212)
 
 scalacOptions ++= Seq(
   "-feature",
@@ -20,8 +19,8 @@ scalacOptions ++= Seq(
 )
 
 //Dependencies
-libraryDependencies ++= Seq("scalajs-react-interface" %%% "universal" % "2017.7.9-RC" % Provided,
-  "scalajs-react-interface" %%% "core" % "2017.7.9-RC" % Provided)
+libraryDependencies ++= Seq("scalajs-react-interface" %%% "universal" % "2017.12.28-RC" % Provided,
+  "scalajs-react-interface" %%% "core" % "2017.12.28-RC" % Provided)
 
 
 
@@ -46,7 +45,8 @@ publishArtifact in Test := false
 resolvers += Resolver.bintrayRepo("scalajs-react-interface", "maven")
 scalaJSUseMainModuleInitializer in Test := true
 
-scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule))
+scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule)
+  .withSourceMap(false))
 
 val TEST_FILE = s"./sjs.test.js"
 
@@ -72,12 +72,12 @@ def runJest() = {
   if (jestResult != 0) throw new IllegalStateException("Jest Suite failed")
 }
 
-resolvers += Resolver.bintrayRepo("scalajs-react-interface", "maven")
-resolvers += Resolver.bintrayRepo("scalajs-jest", "maven")
+resolvers ++=Seq(Resolver.bintrayRepo("scalajs-react-interface", "maven"),
+  Resolver.bintrayRepo("scalajs-jest", "maven"))
 
 libraryDependencies ++= Seq(
-  "org.scala-js" %%% "scalajs-dom" % "0.9.3" % Test,
-  "scalajs-jest" %%% "core" % "2017.7.9-beta" % Test
+  "org.scala-js" %%% "scalajs-dom" % "0.9.4" % Test,
+  "scalajs-jest" %%% "core" % "2017.12.27-RC" % Test
 )
 //scalaJSStage in Global := FastOptStage
 scalaJSStage in Global := FullOptStage

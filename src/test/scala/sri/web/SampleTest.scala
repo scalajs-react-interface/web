@@ -4,7 +4,7 @@ import scalajsjest.JestSuite
 
 class SampleTest extends BaseTest{
 
-  test("Simple", () => {
+ test("Dummy") {
     expect(true).toBeTruthy()
-  })
+ }
 }
